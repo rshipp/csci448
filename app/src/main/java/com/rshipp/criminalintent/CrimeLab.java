@@ -60,4 +60,13 @@ public class CrimeLab {
 
         return new File(externalFilesDir, crime.getPhotoFilename());
     }
+
+    public void updateCrime(Crime crime) {
+        for (int i = 0; i < mCrimes.size(); i++) {
+            if (mCrimes.get(i).getId().equals(crime.getId())) {
+                mCrimes.remove(i);
+                mCrimes.add(i, crime);
+            }
+        }
+    }
 }

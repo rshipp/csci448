@@ -12,7 +12,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,8 @@ public class CrimeListFragment extends Fragment {
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
 
     private RecyclerView mCrimeRecyclerView;
+    private LinearLayout mCrimePlaceholder;
+    private Button mNewCrimeButton;
     private CrimeAdapter mAdapter;
     private boolean mSubtitleVisible;
 
@@ -47,6 +51,21 @@ public class CrimeListFragment extends Fragment {
         if (savedInstanceState != null) {
             mSubtitleVisible = savedInstanceState.getBoolean(SAVED_SUBTITLE_VISIBLE);
         }
+
+        mCrimePlaceholder = (LinearLayout) view
+                .findViewById(R.id.crime_placeholder_view);
+
+        mNewCrimeButton = (Button) view
+                .findViewById(R.id.new_crime_button);
+        mNewCrimeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Crime crime = new Crime();
+                CrimeLab.get(getActivity()).addCrime(crime);
+                Intent intent = CrimePagerActivity
+                        .newIntent(getActivity(), crime.getId());
+                startActivity(intent);
+            }
+        });
 
         updateUI();
 
@@ -121,6 +140,12 @@ public class CrimeListFragment extends Fragment {
             mCrimeRecyclerView.setAdapter(mAdapter);
         } else {
             mAdapter.notifyDataSetChanged();
+        }
+
+        if (crimes.size() > 0) {
+            mCrimePlaceholder.setVisibility(View.GONE);
+        } else {
+            mCrimePlaceholder.setVisibility(View.VISIBLE);
         }
 
         updateSubtitle();

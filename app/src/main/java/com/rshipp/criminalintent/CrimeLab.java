@@ -58,6 +58,10 @@ public class CrimeLab {
             return null;
         }
 
+        if (crime == null) {
+            return null;
+        }
+
         return new File(externalFilesDir, crime.getPhotoFilename());
     }
 

@@ -85,7 +85,10 @@ public class CrimeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+        if (getActivity().findViewById(R.id.detail_fragment_container) != null) { // && getResources().getBoolean(R.bool.dual_pane)) {
+            // Double pane, details shown
+            setHasOptionsMenu(true);
+        }
 
         Log.d(TAG, "onCreate() called");
         UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
@@ -226,7 +229,16 @@ public class CrimeFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.menu_item_delete_crime:
                 CrimeLab.get(getActivity()).deleteCrime(mCrime);
-                getActivity().finish();
+                if (getActivity().findViewById(R.id.detail_fragment_container) == null) {
+                    getActivity().finish();
+                } else {
+                    CrimeListFragment listFragment = (CrimeListFragment)
+                            getFragmentManager()
+                                    .findFragmentById(R.id.fragment_container);
+                    listFragment.updateUI();
+                    Fragment detailFragment = getFragmentManager().findFragmentById(R.id.detail_fragment_container);
+                    getFragmentManager().beginTransaction().remove(detailFragment).commit();
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -340,38 +352,45 @@ public class CrimeFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        Log.d(TAG, "onDetach() called");
+        Log.d(TAG, "CF onDetach() called");
         mCallbacks = null;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart() called");
+        Log.d(TAG, "CF onStart() called");
     }
 
     @Override public void onPause() {
         super.onPause();
-        Log.d(TAG, "onPause() called");
+        Log.d(TAG, "CF onPause() called");
     }
 
     @Override public void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume() called");
+        Log.d(TAG, "CF onResume() called");
+        if (getActivity().findViewById(R.id.detail_fragment_container) != null) {
+            // Double pane, details shown
+            setHasOptionsMenu(true);
+        } else if (getActivity().findViewById(R.id.fragment_crime_layout) != null) {
+            // Single pane, details shown
+            setHasOptionsMenu(true);
+        }
     }
 
     @Override public void onStop() {
         super.onStop();
-        Log.d(TAG, "onStop() called");
+        Log.d(TAG, "CF onStop() called");
     }
 
     @Override public void onDestroyView() {
         super.onDestroyView();
-        Log.d(TAG, "onDestroyView() called");
+        Log.d(TAG, "CF onDestroyView() called");
     }
 
     @Override public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "onDestroy() called");
+        Log.d(TAG, "CF onDestroy() called");
     }
 }

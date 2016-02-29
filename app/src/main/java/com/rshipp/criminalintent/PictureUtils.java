@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Point;
 
 /**
- * Created by george on 2/29/16.
+ * Tools for loading and scaling images
  */
 public class PictureUtils {
     public static Bitmap getScaledBitmap(String path, Activity activity) {

@@ -17,12 +17,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
 /**
- * Created by george on 2/15/16.
+ * CrimeList fragment
+ * View for Crime list
  */
 public class CrimeListFragment extends Fragment {
 

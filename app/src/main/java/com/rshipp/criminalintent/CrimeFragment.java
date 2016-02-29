@@ -35,7 +35,7 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * Created by george on 2/15/16.
+ * Crime details fragment
  */
 public class CrimeFragment extends Fragment {
     private static final String ARG_CRIME_ID = "crime_id";

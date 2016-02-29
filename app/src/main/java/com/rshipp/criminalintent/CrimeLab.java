@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Created by george on 2/15/16.
+ * CrimeLab model
+ * A collection of Crimes
  */
 public class CrimeLab {
     private static CrimeLab sCrimeLab;

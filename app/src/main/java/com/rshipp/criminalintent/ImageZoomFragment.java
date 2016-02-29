@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
@@ -16,7 +15,7 @@ import android.widget.ImageView;
 import java.io.File;
 
 /**
- * Created by george on 2/29/16.
+ * Image zoom dialog
  */
 public class ImageZoomFragment extends DialogFragment {
     public static final String EXTRA_IMAGE =

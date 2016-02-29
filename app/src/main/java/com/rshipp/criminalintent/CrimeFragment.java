@@ -17,6 +17,9 @@ import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -63,6 +66,8 @@ public class CrimeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
         Log.d(TAG, "onCreate() called");
         UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
 
@@ -170,6 +175,25 @@ public class CrimeFragment extends Fragment {
 
         return v;
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_crime_view, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_delete_crime:
+                CrimeLab.get(getActivity()).deleteCrime(mCrime);
+                getActivity().finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     private String getCrimeReport() {
         String solvedString = null;

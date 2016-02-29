@@ -46,6 +46,10 @@ public class CrimeLab {
         return null;
     }
 
+    public void deleteCrime(Crime crime) {
+        mCrimes.remove(crime);
+    }
+
     public File getPhotoFile(Crime crime) {
         File externalFilesDir = mContext
                 .getExternalFilesDir(Environment.DIRECTORY_PICTURES);

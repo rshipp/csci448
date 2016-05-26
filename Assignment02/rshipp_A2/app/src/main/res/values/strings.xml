@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">rshipp_A2</string>
+    <string name="new_game_button">New Game</string>
+    <string name="options_button">Options</string>
+    <string name="quit_button">Quit</string>
+    <string name="players_text">Number of players</string>
+    <string name="one_radio">One</string>
+    <string name="two_radio">Two</string>
+    <string name="first_text">Who plays first?</string>
+    <string name="x_radio">B first</string>
+    <string name="o_radio">Bruno first</string>
+    <string name="clear_button">Reset score</string>
+    <string name="score_x_text">B\'s score: </string>
+    <string name="score_draw_text">Draws: </string>
+    <string name="score_o_text">Bruno\'s score: </string>
+    <string name="play_again_button">New Game</string>
+    <string name="go_back_button">Go Back</string>
+    <string name="x_won_toast">B won!</string>
+    <string name="o_won_toast">B lost :(</string>
+    <string name="draw_toast">Draw game</string>
+</resources>
